@@ -52,9 +52,9 @@ In `builder.html`, find this section and replace with your Firebase config:
 
 ```javascript
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID"
+  apiKey: "AIzaSyD0Oc6wOVpVZZ5USXLEaGqxaLC0-jkLIX8",
+  authDomain: "my-cv-builder-7f131.firebaseapp.com",
+  projectId: "my-cv-builder-7f131"
 };
 ```
 
