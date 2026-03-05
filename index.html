@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CV Builder Pro | ඔබේ රැකියාව දිනාගන්න</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Noto+Sans+Sinhala:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+:root{--bg:#080c18;--card:#0f1628;--primary:#2196f3;--gold:#f5c842;--text:#e8eaf0;--muted:#8a96b0;--border:rgba(255,255,255,0.08)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:'DM Sans','Noto Sans Sinhala',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
+.btn-primary{background:var(--primary);color:white}.btn-primary:hover{background:#1565c0;transform:translateY(-1px);box-shadow:0 8px 25px rgba(33,150,243,.4)}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}.btn-ghost:hover{color:var(--text)}
+.btn-sm{padding:8px 16px;font-size:13px}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:70px;padding:0 24px;background:rgba(8,12,24,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;height:100%;display:flex;align-items:center;gap:32px}
+.brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800}
+.brand i{color:var(--primary)}.brand span{color:white}.brand em{color:var(--gold);font-style:normal}
+.nav-links{display:flex;list-style:none;gap:32px;margin-left:auto}
+.nav-links a{color:var(--muted);font-size:15px;font-weight:500;transition:color .2s}.nav-links a:hover{color:white}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 80px 80px;position:relative;overflow:hidden;gap:60px;max-width:1400px;margin:0 auto}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.2}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#1565c0,transparent);top:-200px;right:-100px;animation:fl 8s ease-in-out infinite}
+.o2{width:400px;height:400px;background:radial-gradient(circle,#3b0764,transparent);bottom:-100px;left:-100px;animation:fl 10s ease-in-out infinite reverse}
+.o3{width:300px;height:300px;background:radial-gradient(circle,#1b4332,transparent);top:40%;left:40%;animation:fl 12s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-30px)}}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{flex:1;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(33,150,243,.12);border:1px solid rgba(33,150,243,.3);color:#90caf9;padding:8px 18px;border-radius:50px;font-size:13px;margin-bottom:28px}
+h1{font-family:'Playfair Display',serif;font-size:clamp(44px,6vw,76px);font-weight:900;line-height:1.1;color:white;margin-bottom:20px}
+h1 em{font-style:italic;color:var(--gold)}
+.sub{font-size:18px;color:var(--muted);margin-bottom:36px;max-width:500px}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.btn-hp{background:linear-gradient(135deg,#2196f3,#1565c0);color:white;padding:16px 36px;font-size:16px;border-radius:14px;box-shadow:0 8px 30px rgba(33,150,243,.4)}
+.btn-hp:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(33,150,243,.5)}
+.btn-hs{background:rgba(255,255,255,.08);color:var(--text);padding:16px 36px;font-size:16px;border-radius:14px;border:1px solid rgba(255,255,255,.15)}
+.hero-stats{display:flex;align-items:center;gap:24px}
+.stat .n{display:block;font-size:28px;font-weight:800;color:white}
+.stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.sdiv{width:1px;height:40px;background:var(--border)}
+.hero-visual{flex:0 0 380px;position:relative;z-index:1}
+.stack{position:relative;height:380px}
+.cv-card{position:absolute;background:white;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);overflow:hidden}
+.c1{width:240px;height:310px;top:40px;left:70px;z-index:3;animation:fl 6s ease-in-out infinite}
+.c2{width:200px;height:260px;top:20px;left:10px;z-index:2;transform:rotate(-6deg);opacity:.7}
+.c3{width:200px;height:260px;top:80px;left:160px;z-index:1;transform:rotate(6deg);opacity:.5}
+/* SECTIONS */
+.sec{padding:100px 0}
+.sec-alt{background:rgba(255,255,255,.01)}
+.sec-hdr{text-align:center;margin-bottom:52px}
+.sec-hdr h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);font-weight:900;color:white;margin-bottom:12px}
+.sec-hdr p{color:var(--muted);font-size:17px}
+/* CATEGORY TABS */
+.cat-tabs{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:44px}
+.cat-tab{display:flex;align-items:center;gap:8px;padding:10px 20px;background:var(--card);border:1px solid var(--border);border-radius:50px;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}
+.cat-tab:hover{border-color:var(--primary);color:var(--primary)}
+.cat-tab.active{background:var(--primary);border-color:var(--primary);color:white}
+/* TEMPLATE GRID */
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-bottom:32px}
+.tpl-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .25s;position:relative}
+.tpl-card:hover{transform:translateY(-4px);border-color:var(--primary);box-shadow:0 12px 40px rgba(33,150,243,.15)}
+.tpl-thumb{height:180px;overflow:hidden;position:relative}
+.tpl-thumb svg{width:100%;height:100%}
+.tpl-info{padding:12px 14px}
+.tpl-name{font-weight:600;font-size:13px;color:var(--text);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tpl-cat{font-size:11px;color:var(--muted)}
+.tpl-hover{position:absolute;inset:0;background:rgba(33,150,243,.92);display:flex;align-items:center;justify-content:center;gap:8px;color:white;font-weight:700;font-size:15px;opacity:0;transition:opacity .2s}
+.tpl-card:hover .tpl-hover{opacity:1}
+.load-more{text-align:center;margin-top:20px}
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.feat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .25s}
+.feat-card:hover{border-color:rgba(255,255,255,.15);transform:translateY(-2px)}
+.feat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.fi-b{background:rgba(33,150,243,.15);color:#2196f3}.fi-g{background:rgba(82,183,136,.15);color:#52b788}
+.fi-y{background:rgba(245,200,66,.15);color:#f5c842}.fi-p{background:rgba(168,85,247,.15);color:#a855f7}
+.fi-r{background:rgba(244,63,94,.15);color:#f43f5e}.fi-t{background:rgba(20,184,166,.15);color:#14b8a6}
+.fi-o{background:rgba(217,119,6,.15);color:#d97706}.fi-n{background:rgba(59,130,246,.15);color:#3b82f6}
+.feat-card h3{font-size:17px;font-weight:700;color:white;margin-bottom:8px}
+.feat-card p{color:var(--muted);font-size:14px;line-height:1.6}
+/* STEPS */
+.steps{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+.step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px 20px;max-width:210px;text-align:center}
+.step-n{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:rgba(33,150,243,.25);line-height:1;margin-bottom:12px}
+.step h3{font-size:15px;font-weight:700;color:white;margin-bottom:8px}
+.step p{font-size:13px;color:var(--muted)}
+.step-arr{font-size:20px;color:var(--muted);flex-shrink:0}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,#0d2137,#1a3a5c);border-radius:24px;padding:80px 40px;text-align:center;border:1px solid rgba(33,150,243,.3)}
+.cta-box h2{font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:white;margin-bottom:16px}
+.cta-box p{color:rgba(255,255,255,.6);font-size:16px;margin-bottom:36px}
+.btn-cta{background:white;color:#0f1628;padding:18px 48px;font-size:18px;border-radius:16px;font-weight:700}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(255,255,255,.2)}
+/* FOOTER */
+footer{padding:60px 0 30px;border-top:1px solid var(--border)}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.foot-brand p{color:var(--muted);font-size:14px;margin-top:12px;max-width:260px}
+.soc-links{display:flex;gap:12px;margin-top:16px}
+.soc-link{width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .2s}
+.soc-link:hover{color:white;border-color:var(--primary)}
+.foot-col h4{font-size:13px;font-weight:700;color:white;margin-bottom:16px;text-transform:uppercase;letter-spacing:1px}
+.foot-col ul{list-style:none}
+.foot-col li{margin-bottom:10px}
+.foot-col a{color:var(--muted);font-size:14px;transition:color .2s}.foot-col a:hover{color:white}
+.foot-bot{border-top:1px solid var(--border);padding-top:24px;text-align:center;color:var(--muted);font-size:13px}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;max-width:560px;width:100%;max-height:90vh;overflow-y:auto}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;padding:24px 28px;border-bottom:1px solid var(--border)}
+.modal-hdr h3{font-size:18px;font-weight:700;color:white;display:flex;align-items:center;gap:10px}
+.modal-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal-close:hover{background:rgba(255,255,255,.1);color:white}
+.modal-body{padding:28px}
+.modal-footer{padding:20px 28px;border-top:1px solid var(--border);display:flex;gap:12px;justify-content:flex-end}
+/* RESPONSIVE */
+@media(max-width:960px){.hero{flex-direction:column;padding:100px 24px 60px;text-align:center}.hero-visual{display:none}.hero-btns,.hero-stats{justify-content:center}.foot-grid{grid-template-columns:1fr 1fr}.steps{flex-direction:column}.step-arr{transform:rotate(90deg)}}
+@media(max-width:600px){.nav-links{display:none}.cat-tabs{gap:8px}.cat-tab{padding:8px 14px;font-size:12px}.foot-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><i class="fas fa-file-alt"></i><span>CV<em>Pro</em></span></div>
+    <ul class="nav-links">
+      <li><a href="#templates">Templates</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How It Works</a></li>
+    </ul>
+    <a href="builder.html" class="btn btn-primary" style="margin-left:auto"><i class="fas fa-plus"></i> CV හදන්න</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+    <div class="grid-bg"></div>
+  </div>
+  <div class="hero-content">
+    <div class="badge">✨ 100+ Professional Templates · AI-Powered · Free</div>
+    <h1>ඔබේ <em>සිහිනයේ</em><br/>රැකියාව දිනාගන්න</h1>
+    <p class="sub">වයස 16+ ඕනෑම කෙනෙකුට — AI-powered professional CV builder. Minutes 5කින් job-ready CV.</p>
+    <div class="hero-btns">
+      <a href="builder.html" class="btn btn-hp"><i class="fas fa-rocket"></i> දැන්ම හදන්න — Free</a>
+      <a href="#templates" class="btn btn-hs"><i class="fas fa-th-large"></i> Templates බලන්න</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="n">100+</span><span class="l">Templates</span></div>
+      <div class="sdiv"></div>
+      <div class="stat"><span class="n">5</span><span class="l">Categories</span></div>
+      <div class="sdiv"></div>
+      <div class="stat"><span class="n">AI</span><span class="l">Powered</span></div>
+      <div class="sdiv"></div>
+      <div class="stat"><span class="n">A4</span><span class="l">PDF Export</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="stack">
+      <div class="cv-card c3">
+        <div style="height:50px;background:#7f1d1d"></div>
+        <div style="padding:12px"><div style="height:8px;background:#ddd;border-radius:4px;margin:6px 0;width:70%"></div><div style="height:6px;background:#eee;border-radius:4px;margin:6px 0;width:50%"></div><div style="height:6px;background:#eee;border-radius:4px;margin:6px 0;width:85%"></div></div>
+      </div>
+      <div class="cv-card c2">
+        <div style="height:50px;background:#1b4332"></div>
+        <div style="padding:12px"><div style="height:8px;background:#ddd;border-radius:4px;margin:6px 0;width:75%"></div><div style="height:6px;background:#eee;border-radius:4px;margin:6px 0;width:55%"></div><div style="height:6px;background:#eee;border-radius:4px;margin:6px 0;width:90%"></div></div>
+      </div>
+      <div class="cv-card c1">
+        <div style="display:flex;height:100%">
+          <div style="width:35%;background:#1a3a5c;padding:14px">
+            <div style="width:50px;height:50px;border-radius:50%;background:rgba(255,255,255,.3);margin:0 auto 10px"></div>
+            <div style="height:5px;background:rgba(255,255,255,.5);border-radius:3px;margin:5px 0"></div>
+            <div style="height:4px;background:rgba(255,255,255,.3);border-radius:3px;margin:5px 0"></div>
+          </div>
+          <div style="flex:1;padding:14px">
+            <div style="height:10px;background:#1a3a5c;border-radius:3px;width:80%;margin-bottom:6px"></div>
+            <div style="height:6px;background:#ddd;border-radius:3px;width:60%;margin-bottom:14px"></div>
+            <div style="height:5px;background:#eee;border-radius:3px;margin:4px 0"></div>
+            <div style="height:5px;background:#eee;border-radius:3px;margin:4px 0;width:90%"></div>
+            <div style="height:5px;background:#eee;border-radius:3px;margin:4px 0;width:75%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="templates">
+  <div class="container">
+    <div class="sec-hdr"><h2>Template Categories</h2><p>ඔබේ රැකියාවට ගැලපෙන category එක තෝරාගන්න</p></div>
+    <div class="cat-tabs" id="catTabs">
+      <button class="cat-tab active" data-f="all"><i class="fas fa-th-large"></i> සියල්ල (100)</button>
+      <button class="cat-tab" data-f="modern"><i class="fas fa-briefcase"></i> Modern & Professional</button>
+      <button class="cat-tab" data-f="creative"><i class="fas fa-palette"></i> Creative & Artistic</button>
+      <button class="cat-tab" data-f="academic"><i class="fas fa-graduation-cap"></i> Simple & Academic</button>
+      <button class="cat-tab" data-f="infographic"><i class="fas fa-chart-bar"></i> Infographic & Visual</button>
+      <button class="cat-tab" data-f="industry"><i class="fas fa-industry"></i> Industry Specific</button>
+    </div>
+    <div class="tpl-grid" id="tplGrid"></div>
+    <div class="load-more"><button class="btn btn-ghost" id="loadMoreBtn" onclick="loadMore()"><i class="fas fa-chevron-down"></i> Load More</button></div>
+  </div>
+</section>
+
+<section class="sec sec-alt" id="features">
+  <div class="container">
+    <div class="sec-hdr"><h2>ඇයි CV Pro?</h2><p>Professional CV builder features — 100% Free</p></div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon fi-b"><i class="fas fa-robot"></i></div><h3>AI-Powered Content</h3><p>Claude AI ගේ help ඇතිව professional summary, skills, job descriptions ලියාගන්න</p></div>
+      <div class="feat-card"><div class="feat-icon fi-g"><i class="fas fa-file-pdf"></i></div><h3>A4 PDF Download</h3><p>Perfect A4 PDF format. ATS-friendly format. High quality print-ready output</p></div>
+      <div class="feat-card"><div class="feat-icon fi-y"><i class="fas fa-paint-brush"></i></div><h3>100+ Templates</h3><p>5 categories, 100+ professional templates. ඕනෑම රැකියාවකට ගැලපෙන design</p></div>
+      <div class="feat-card"><div class="feat-icon fi-p"><i class="fas fa-cloud"></i></div><h3>Cloud Save</h3><p>Firebase ගේ help ඇතිව CV data cloud save කරන්න. ඕනෑ device එකෙන් access</p></div>
+      <div class="feat-card"><div class="feat-icon fi-r"><i class="fas fa-share-alt"></i></div><h3>Social Sharing</h3><p>WhatsApp, Facebook, LinkedIn හරහා share කරන්න. Link copy option</p></div>
+      <div class="feat-card"><div class="feat-icon fi-t"><i class="fas fa-upload"></i></div><h3>CV Upload & Edit</h3><p>පැරණි CV upload කරලා edit කරන්න. Template change කරලා new look ගන්න</p></div>
+      <div class="feat-card"><div class="feat-icon fi-o"><i class="fas fa-camera"></i></div><h3>Photo Upload</h3><p>Professional profile photo add. ඕනෑම template එකේ photo section available</p></div>
+      <div class="feat-card"><div class="feat-icon fi-n"><i class="fas fa-mobile-alt"></i></div><h3>Mobile Friendly</h3><p>Phone, tablet, computer ඕනෑ device. 100% responsive design</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="how">
+  <div class="container">
+    <div class="sec-hdr"><h2>CV හදන්නේ කෙසේද?</h2><p>Simple steps 4කින් professional CV</p></div>
+    <div class="steps">
+      <div class="step"><div class="step-n">01</div><h3>Template තෝරන්න</h3><p>100+ templates අතරින් ඔබේ රැකියාවට ගැලපෙන template select කරන්න</p></div>
+      <div class="step-arr"><i class="fas fa-arrow-right"></i></div>
+      <div class="step"><div class="step-n">02</div><h3>Details ඇතුළු කරන්න</h3><p>Personal info, education, skills, experience AI help ඇතිව fill කරන්න</p></div>
+      <div class="step-arr"><i class="fas fa-arrow-right"></i></div>
+      <div class="step"><div class="step-n">03</div><h3>Preview & Customize</h3><p>Live preview, fonts, colors change, ඕනෑ ලෙස customize කරන්න</p></div>
+      <div class="step-arr"><i class="fas fa-arrow-right"></i></div>
+      <div class="step"><div class="step-n">04</div><h3>Download & Share</h3><p>A4 PDF download, social media share, email option</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-alt">
+  <div class="container">
+    <div class="cta-box">
+      <h2>ඔබේ CV Journey<br/>දැන්ම ආරම්භ කරන්න</h2>
+      <p>Free · No account needed · 5 minutes</p>
+      <a href="builder.html" class="btn btn-cta"><i class="fas fa-rocket"></i> Build My CV — Free</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand"><i class="fas fa-file-alt"></i><span>CV<em>Pro</em></span></div>
+        <p>Sri Lanka's most powerful free CV builder. Built for everyone, age 16+.</p>
+        <div class="soc-links">
+          <a href="#" class="soc-link"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="soc-link"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="soc-link"><i class="fab fa-linkedin"></i></a>
+          <a href="#" class="soc-link"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Quick Links</h4><ul><li><a href="#templates">Templates</a></li><li><a href="#features">Features</a></li><li><a href="builder.html">Build CV</a></li></ul></div>
+      <div class="foot-col"><h4>Templates</h4><ul><li><a href="builder.html?cat=modern">Modern & Professional</a></li><li><a href="builder.html?cat=creative">Creative & Artistic</a></li><li><a href="builder.html?cat=academic">Simple & Academic</a></li><li><a href="builder.html?cat=industry">Industry Specific</a></li></ul></div>
+    </div>
+    <div class="foot-bot"><p>&copy; 2025 CV Builder Pro. Made with <i class="fas fa-heart" style="color:#f43f5e"></i> for Sri Lanka</p></div>
+  </div>
+</footer>
+
+<!-- Preview Modal -->
+<div class="modal-overlay" id="previewModal">
+  <div class="modal">
+    <div class="modal-hdr"><h3 id="modalTitle">Template Preview</h3><button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost btn-sm" onclick="closeModal()">Cancel</button>
+      <a href="#" class="btn btn-primary btn-sm" id="useBtn"><i class="fas fa-edit"></i> Use Template</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== TEMPLATES DATA =====
+const COLORS=[
+  {p:'#1a3a5c',a:'#2196f3'},{p:'#1c1c2e',a:'#c9a84c'},{p:'#1b4332',a:'#52b788'},
+  {p:'#7f1d1d',a:'#ef4444'},{p:'#3b0764',a:'#a855f7'},{p:'#1e293b',a:'#64748b'},
+  {p:'#134e4a',a:'#14b8a6'},{p:'#4c0519',a:'#f43f5e'},{p:'#78350f',a:'#d97706'},
+  {p:'#0f172a',a:'#3b82f6'}
+];
+const LAYOUTS=['sidebar','classic','header','minimal','timeline','grid','card','bold','creative','academic'];
+const TEMPLATES=[
+  {id:1,name:'Modern Corporate',cat:'modern',l:0,c:0},{id:2,name:'Professional Executive',cat:'modern',l:1,c:1},
+  {id:3,name:'Sleek Minimalist',cat:'modern',l:3,c:5},{id:4,name:'Polished Business',cat:'modern',l:7,c:8},
+  {id:5,name:'Elegant Serif',cat:'modern',l:1,c:0},{id:6,name:'Clean Lines',cat:'modern',l:3,c:9},
+  {id:7,name:'Bold Header',cat:'modern',l:7,c:1},{id:8,name:'Contemporary Chic',cat:'modern',l:0,c:9},
+  {id:9,name:'Urban Professional',cat:'modern',l:2,c:5},{id:10,name:'Metro Style',cat:'modern',l:4,c:6},
+  {id:11,name:'New Age Corporate',cat:'modern',l:6,c:9},{id:12,name:'Global Standard',cat:'modern',l:0,c:5},
+  {id:13,name:'High-Impact Pro',cat:'modern',l:7,c:0},{id:14,name:'Formal Slate',cat:'modern',l:9,c:5},
+  {id:15,name:'Standard Blue',cat:'modern',l:0,c:0},{id:16,name:'Classic Grey',cat:'modern',l:1,c:5},
+  {id:17,name:'Sharp Edge',cat:'modern',l:2,c:9},{id:18,name:'Strategic Lead',cat:'modern',l:0,c:1},
+  {id:19,name:'Executive Presence',cat:'modern',l:7,c:9},{id:20,name:'Elite Career',cat:'modern',l:6,c:0},
+  {id:21,name:'Creative Portfolio',cat:'creative',l:8,c:4},{id:22,name:'Artistic Flare',cat:'creative',l:2,c:3},
+  {id:23,name:'Vibrant Color',cat:'creative',l:8,c:7},{id:24,name:'Graphic Designer Pro',cat:'creative',l:5,c:4},
+  {id:25,name:'Bold & Bright',cat:'creative',l:2,c:7},{id:26,name:'Pastel Soft',cat:'creative',l:8,c:6},
+  {id:27,name:'Abstract Background',cat:'creative',l:6,c:4},{id:28,name:'Geometric Pattern',cat:'creative',l:5,c:7},
+  {id:29,name:'Modern Art',cat:'creative',l:8,c:3},{id:30,name:'Minimalist Pop',cat:'creative',l:3,c:7},
+  {id:31,name:'Stylish Sidebar',cat:'creative',l:0,c:4},{id:32,name:'Creative Edge',cat:'creative',l:8,c:8},
+  {id:33,name:'Portfolio Plus',cat:'creative',l:6,c:7},{id:34,name:'Visual Storyteller',cat:'creative',l:5,c:3},
+  {id:35,name:'Designer Grid',cat:'creative',l:5,c:8},{id:36,name:'Concept Art',cat:'creative',l:8,c:2},
+  {id:37,name:'Bold Typo',cat:'creative',l:7,c:3},{id:38,name:'Media Maven',cat:'creative',l:2,c:4},
+  {id:39,name:'Studio Style',cat:'creative',l:6,c:3},{id:40,name:'Crafty Layout',cat:'creative',l:0,c:7},
+  {id:41,name:'Simple White',cat:'academic',l:9,c:0},{id:42,name:'Basic Entry',cat:'academic',l:3,c:0},
+  {id:43,name:'Academic CV',cat:'academic',l:9,c:5},{id:44,name:'Research Scholar',cat:'academic',l:1,c:9},
+  {id:45,name:'University Graduate',cat:'academic',l:9,c:2},{id:46,name:'Student Starter',cat:'academic',l:3,c:6},
+  {id:47,name:'Traditional List',cat:'academic',l:9,c:1},{id:48,name:'Plain Text',cat:'academic',l:3,c:2},
+  {id:49,name:'Functional Layout',cat:'academic',l:1,c:6},{id:50,name:'Chronological',cat:'academic',l:4,c:0},
+  {id:51,name:'Straightforward',cat:'academic',l:3,c:9},{id:52,name:'Minimalist White',cat:'academic',l:3,c:5},
+  {id:53,name:'Standard A4',cat:'academic',l:9,c:9},{id:54,name:'Formal White',cat:'academic',l:1,c:0},
+  {id:55,name:'Legacy Scholar',cat:'academic',l:9,c:8},{id:56,name:'Campus Recruit',cat:'academic',l:0,c:2},
+  {id:57,name:'Entry Level',cat:'academic',l:4,c:6},{id:58,name:'School Leaver',cat:'academic',l:3,c:0},
+  {id:59,name:'Basic Grid',cat:'academic',l:1,c:2},{id:60,name:'Clean Slate',cat:'academic',l:3,c:2},
+  {id:61,name:'Visual Infographic',cat:'infographic',l:5,c:9},{id:62,name:'Timeline Style',cat:'infographic',l:4,c:2},
+  {id:63,name:'Skill Bar Pro',cat:'infographic',l:5,c:0},{id:64,name:'Icon Based',cat:'infographic',l:5,c:6},
+  {id:65,name:'Data Driven',cat:'infographic',l:5,c:7},{id:66,name:'Progress Tracker',cat:'infographic',l:4,c:8},
+  {id:67,name:'Interactive Design',cat:'infographic',l:6,c:6},{id:68,name:'Bold Icons',cat:'infographic',l:5,c:3},
+  {id:69,name:'Chart Master',cat:'infographic',l:5,c:4},{id:70,name:'Modern Metric',cat:'infographic',l:6,c:2},
+  {id:71,name:'Visual Resume',cat:'infographic',l:8,c:9},{id:72,name:'Snapshot Pro',cat:'infographic',l:5,c:1},
+  {id:73,name:'Graphic Summary',cat:'infographic',l:5,c:5},{id:74,name:'Quick Scan',cat:'infographic',l:4,c:9},
+  {id:75,name:'Highlight Reel',cat:'infographic',l:6,c:8},{id:76,name:'Point & Shoot',cat:'infographic',l:2,c:2},
+  {id:77,name:'Insightful CV',cat:'infographic',l:5,c:2},{id:78,name:'Digital Native',cat:'infographic',l:6,c:4},
+  {id:79,name:'Tech Savvy',cat:'infographic',l:6,c:9},{id:80,name:'Social Style',cat:'infographic',l:8,c:6},
+  {id:81,name:'Medical Professional',cat:'industry',l:0,c:2},{id:82,name:'IT Developer',cat:'industry',l:7,c:9},
+  {id:83,name:'Legal Eagle',cat:'industry',l:9,c:1},{id:84,name:'Hospitality Pro',cat:'industry',l:2,c:8},
+  {id:85,name:'Sales Pitch',cat:'industry',l:7,c:3},{id:86,name:'Marketing Guru',cat:'industry',l:8,c:7},
+  {id:87,name:'Engineering Blueprint',cat:'industry',l:0,c:0},{id:88,name:'Teaching Profile',cat:'industry',l:9,c:2},
+  {id:89,name:'Nursing Standard',cat:'industry',l:0,c:6},{id:90,name:'Financial Analyst',cat:'industry',l:1,c:1},
+  {id:91,name:'Customer Service',cat:'industry',l:4,c:0},{id:92,name:'Logistics Lead',cat:'industry',l:2,c:9},
+  {id:93,name:'Real Estate',cat:'industry',l:6,c:1},{id:94,name:'Fashion Forward',cat:'industry',l:8,c:4},
+  {id:95,name:'Fitness Coach',cat:'industry',l:2,c:6},{id:96,name:'Culinary Chef',cat:'industry',l:5,c:8},
+  {id:97,name:'Construction Mgr',cat:'industry',l:7,c:5},{id:98,name:'Aviation Expert',cat:'industry',l:0,c:9},
+  {id:99,name:'Media Journalist',cat:'industry',l:8,c:5},{id:100,name:'Freelance Hustle',cat:'industry',l:6,c:7}
+];
+const CAT_ICONS={modern:'fas fa-briefcase',creative:'fas fa-palette',academic:'fas fa-graduation-cap',infographic:'fas fa-chart-bar',industry:'fas fa-industry'};
+const CAT_LABELS={all:'All Templates',modern:'Modern & Professional',creative:'Creative & Artistic',academic:'Simple & Academic',infographic:'Infographic & Visual',industry:'Industry Specific'};
+
+function thumb(t){
+  const c=COLORS[t.c],p=c.p,a=c.a,l=LAYOUTS[t.l];
+  const svgs={
+    sidebar:`<rect width="220" height="180" fill="#f5f5f5"/><rect width="72" height="180" fill="${p}"/><circle cx="36" cy="38" r="20" fill="rgba(255,255,255,.25)"/><rect x="14" y="64" width="44" height="4" rx="2" fill="rgba(255,255,255,.7)"/><rect x="18" y="72" width="36" height="3" rx="1" fill="rgba(255,255,255,.4)"/><rect x="10" y="90" width="52" height="2" rx="1" fill="rgba(255,255,255,.2)"/><rect x="10" y="96" width="44" height="2" rx="1" fill="rgba(255,255,255,.15)"/><rect x="10" y="114" width="52" height="2" rx="1" fill="rgba(255,255,255,.2)"/><rect x="90" y="18" width="80" height="6" rx="2" fill="${p}"/><rect x="90" y="28" width="60" height="3" rx="1" fill="${a}" opacity=".8"/><rect x="90" y="44" width="110" height="2" rx="1" fill="#ddd"/><rect x="90" y="50" width="100" height="2" rx="1" fill="#ddd"/><rect x="90" y="56" width="95" height="2" rx="1" fill="#ddd"/><rect x="90" y="68" width="50" height="3" rx="1" fill="${p}" opacity=".8"/><rect x="90" y="75" width="110" height="2" rx="1" fill="#e0e0e0"/><rect x="90" y="81" width="90" height="2" rx="1" fill="#e0e0e0"/>`,
+    classic:`<rect width="220" height="180" fill="#fff"/><rect width="220" height="50" fill="${p}"/><circle cx="110" cy="25" r="14" fill="rgba(255,255,255,.25)"/><rect x="70" y="42" width="80" height="5" rx="2" fill="${a}"/><rect x="40" y="62" width="140" height="3" rx="1" fill="#ccc"/><rect x="60" y="69" width="100" height="2" rx="1" fill="#ddd"/><rect x="10" y="84" width="60" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="10" y="90" width="200" height="1" fill="${a}" opacity=".5"/><rect x="10" y="96" width="190" height="2" rx="1" fill="#e5e5e5"/><rect x="10" y="102" width="170" height="2" rx="1" fill="#e5e5e5"/><rect x="10" y="124" width="60" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="10" y="130" width="200" height="1" fill="${a}" opacity=".5"/><rect x="10" y="136" width="80" height="5" rx="2" fill="${p}" opacity=".1"/><rect x="96" y="136" width="80" height="5" rx="2" fill="${p}" opacity=".1"/>`,
+    header:`<rect width="220" height="180" fill="#f8f8f8"/><rect width="220" height="56" fill="${p}"/><circle cx="28" cy="28" r="18" fill="rgba(255,255,255,.2)"/><rect x="56" y="16" width="80" height="6" rx="2" fill="white" opacity=".9"/><rect x="56" y="26" width="60" height="3" rx="1" fill="rgba(255,255,255,.6)"/><rect width="220" height="12" y="56" fill="${a}" opacity=".7"/><rect x="10" y="80" width="90" height="80" rx="2" fill="white" stroke="#eee" stroke-width="1"/><rect x="110" y="80" width="100" height="80" rx="2" fill="white" stroke="#eee" stroke-width="1"/><rect x="18" y="90" width="40" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="18" y="97" width="74" height="2" rx="1" fill="#ddd"/><rect x="18" y="103" width="64" height="2" rx="1" fill="#ddd"/><rect x="118" y="90" width="40" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="118" y="97" width="74" height="2" rx="1" fill="#ddd"/><rect x="118" y="103" width="64" height="2" rx="1" fill="#ddd"/>`,
+    minimal:`<rect width="220" height="180" fill="#fff"/><rect x="20" y="16" width="100" height="8" rx="1" fill="#111"/><rect x="20" y="28" width="60" height="3" rx="1" fill="${a}" opacity=".8"/><rect x="20" y="33" width="30" height="2" rx="1" fill="${p}" opacity=".4"/><rect x="20" y="44" width="180" height="1" fill="#eee"/><rect x="68" y="52" width="1" height="120" fill="#eee"/><rect x="20" y="56" width="30" height="2" rx="1" fill="${a}" opacity=".6"/><rect x="80" y="52" width="130" height="2" rx="1" fill="#ddd"/><rect x="80" y="58" width="120" height="2" rx="1" fill="#ddd"/><rect x="20" y="84" width="30" height="2" rx="1" fill="${a}" opacity=".6"/><rect x="80" y="80" width="130" height="2" rx="1" fill="#ddd"/><rect x="80" y="86" width="110" height="2" rx="1" fill="#ddd"/><rect x="20" y="110" width="30" height="2" rx="1" fill="${a}" opacity=".6"/><rect x="80" y="106" width="130" height="2" rx="1" fill="#ddd"/><rect x="80" y="112" width="120" height="2" rx="1" fill="#ddd"/>`,
+    timeline:`<rect width="220" height="180" fill="#f8f8f8"/><rect width="220" height="48" fill="${p}"/><circle cx="24" cy="24" r="16" fill="rgba(255,255,255,.2)"/><rect x="50" y="14" width="70" height="5" rx="2" fill="white" opacity=".9"/><rect x="50" y="24" width="50" height="3" rx="1" fill="rgba(255,255,255,.6)"/><line x1="36" y1="60" x2="36" y2="170" stroke="#ddd" stroke-width="1.5"/><circle cx="36" cy="68" r="4" fill="${p}"/><circle cx="36" cy="96" r="4" fill="${p}"/><circle cx="36" cy="126" r="4" fill="${p}"/><rect x="50" y="62" width="80" height="4" rx="1" fill="${p}" opacity=".8"/><rect x="50" y="70" width="60" height="2" rx="1" fill="${a}" opacity=".7"/><rect x="50" y="76" width="140" height="2" rx="1" fill="#ddd"/><rect x="50" y="90" width="80" height="4" rx="1" fill="${p}" opacity=".8"/><rect x="50" y="98" width="60" height="2" rx="1" fill="${a}" opacity=".7"/><rect x="50" y="104" width="140" height="2" rx="1" fill="#ddd"/>`,
+    grid:`<rect width="220" height="180" fill="#fff"/><rect width="220" height="44" fill="${p}"/><circle cx="24" cy="22" r="14" fill="rgba(255,255,255,.2)"/><rect x="48" y="12" width="70" height="5" rx="2" fill="white" opacity=".9"/><rect width="220" height="10" y="44" fill="${a}" opacity=".7"/><rect x="10" y="62" width="95" height="108" rx="2" fill="#fafafa" stroke="#eee" stroke-width="1"/><rect x="115" y="62" width="95" height="108" rx="2" fill="#fafafa" stroke="#eee" stroke-width="1"/><rect x="18" y="70" width="50" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="18" y="77" width="79" height="2" rx="1" fill="#e0e0e0"/><rect x="123" y="70" width="50" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="123" y="77" width="79" height="2" rx="1" fill="#e0e0e0"/>`,
+    card:`<rect width="220" height="180" fill="#f0f2f5"/><defs><linearGradient id="g${t.id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${p}"/><stop offset="100%" stop-color="${a}"/></linearGradient></defs><rect width="220" height="50" fill="url(#g${t.id})"/><rect x="16" y="30" width="188" height="40" rx="8" fill="white"/><circle cx="34" cy="50" r="12" fill="${p}" opacity=".2"/><rect x="52" y="43" width="60" height="5" rx="1" fill="#222"/><rect x="52" y="52" width="40" height="3" rx="1" fill="${a}"/><rect x="16" y="80" width="90" height="44" rx="6" fill="white" stroke="#eee" stroke-width="1"/><rect x="112" y="80" width="92" height="44" rx="6" fill="white" stroke="#eee" stroke-width="1"/><rect x="16" y="130" width="188" height="40" rx="6" fill="white" stroke="#eee" stroke-width="1"/>`,
+    bold:`<rect width="220" height="180" fill="white"/><rect width="220" height="6" fill="${a}"/><rect x="20" y="18" width="120" height="8" rx="1" fill="#111"/><rect x="20" y="30" width="90" height="4" rx="1" fill="${a}" opacity=".8"/><circle cx="190" cy="28" r="20" fill="${p}" opacity=".1"/><rect width="220" height="12" y="50" fill="${p}"/><rect x="20" y="76" width="80" height="5" rx="1" fill="${p}"/><rect x="20" y="82" width="180" height="1.5" fill="${a}" opacity=".5"/><rect x="20" y="92" width="5" height="30" rx="2" fill="${a}"/><rect x="30" y="92" width="80" height="3" rx="1" fill="#333"/><rect x="30" y="99" width="50" height="2" rx="1" fill="${a}" opacity=".6"/><rect x="30" y="106" width="170" height="2" rx="1" fill="#eee"/>`,
+    creative:`<rect width="220" height="180" fill="white"/><rect width="220" height="70" fill="${p}"/><path d="M0 50 L220 50 L220 80 L0 70 Z" fill="white"/><circle cx="30" cy="35" r="18" fill="rgba(255,255,255,.2)"/><rect x="58" y="22" width="70" height="6" rx="2" fill="white" opacity=".9"/><rect x="58" y="32" width="50" height="3" rx="1" fill="rgba(255,255,255,.6)"/><rect x="10" y="90" width="95" height="80" rx="3" fill="${p}" fill-opacity=".04" stroke="${p}" stroke-opacity=".1" stroke-width="1"/><rect x="115" y="90" width="95" height="80" rx="3" fill="${p}" fill-opacity=".04" stroke="${p}" stroke-opacity=".1" stroke-width="1"/><rect x="18" y="98" width="50" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="18" y="106" width="79" height="2" rx="1" fill="#ddd"/><rect x="123" y="98" width="50" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="123" y="106" width="79" height="2" rx="1" fill="#ddd"/>`,
+    academic:`<rect width="220" height="180" fill="white"/><rect x="20" y="16" width="120" height="7" rx="1" fill="${p}"/><rect x="20" y="27" width="80" height="3" rx="1" fill="#555"/><rect x="150" y="16" width="50" height="60" rx="2" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/><rect x="20" y="38" width="180" height="2" fill="${p}"/><rect x="20" y="48" width="50" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="20" y="54" width="116" height="2" rx="1" fill="#ccc"/><rect x="142" y="54" width="30" height="2" rx="1" fill="#aaa"/><rect x="20" y="84" width="50" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="20" y="88" width="200" height="1" fill="${p}"/><rect x="20" y="94" width="60" height="2" rx="1" fill="#999"/><rect x="90" y="94" width="130" height="2" rx="1" fill="#ddd"/><rect x="20" y="150" width="50" height="3" rx="1" fill="${p}" opacity=".7"/><rect x="20" y="154" width="200" height="1" fill="${p}"/><rect x="20" y="160" width="80" height="8" rx="2" fill="#f0f0f0" stroke="#ddd" stroke-width="1"/><rect x="110" y="160" width="100" height="8" rx="2" fill="#f0f0f0" stroke="#ddd" stroke-width="1"/>`
+  };
+  return `<svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg">${svgs[l]||svgs.sidebar}</svg>`;
+}
+
+let filter='all', shown=20;
+function renderGrid(){
+  const list=filter==='all'?TEMPLATES:TEMPLATES.filter(t=>t.cat===filter);
+  const chunk=list.slice(0,shown);
+  document.getElementById('tplGrid').innerHTML=chunk.map(t=>`
+    <div class="tpl-card" onclick="openPreview(${t.id})">
+      <div class="tpl-thumb">${thumb(t)}</div>
+      <div class="tpl-info">
+        <div class="tpl-name">${t.name}</div>
+        <div class="tpl-cat"><i class="${CAT_ICONS[t.cat]}"></i> ${CAT_LABELS[t.cat]}</div>
+      </div>
+      <div class="tpl-hover"><i class="fas fa-eye"></i> Preview</div>
+    </div>`).join('');
+  const btn=document.getElementById('loadMoreBtn');
+  btn.style.display=list.length>shown?'inline-flex':'none';
+}
+function loadMore(){shown+=20;renderGrid()}
+function openPreview(id){
+  const t=TEMPLATES.find(x=>x.id===id);
+  document.getElementById('modalTitle').textContent=t.name;
+  document.getElementById('modalBody').innerHTML=`<div style="text-align:center;padding:20px 0">${thumb(t)}<p style="margin-top:16px;color:var(--muted);font-size:14px">Template #${t.id} · ${CAT_LABELS[t.cat]}</p></div>`;
+  document.getElementById('useBtn').href=`builder.html?tpl=${id}`;
+  document.getElementById('previewModal').classList.add('open');
+}
+function closeModal(){document.getElementById('previewModal').classList.remove('open')}
+// Category filter
+document.getElementById('catTabs').addEventListener('click',e=>{
+  const btn=e.target.closest('.cat-tab');
+  if(!btn)return;
+  document.querySelectorAll('.cat-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filter=btn.dataset.f;shown=20;renderGrid();
+});
+document.getElementById('previewModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal()});
+renderGrid();
+// Navbar scroll
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.background=scrollY>50?'rgba(8,12,24,.98)':'rgba(8,12,24,.92)'});
+</script>
+</body>
+</html>
